@@ -4,6 +4,25 @@ class MinHeap:
         self.element_counter = 0
         self.max_size = max_size
 
+    # Nav Functions 
+    
+    def left_child(self, parent_index: int) -> int:
+        return 2 * parent_index + 1
+
+    def right_child(self, parent_index: int) -> int:
+        return 2 * (parent_index + 1)
+
+    def parent(self, child_index: int) -> int:
+        return (child_index - 1) // 2
+
+    def swap(self, i: int, j: int) -> None:
+        if i != j:
+            temp = self.heap_array[i]
+            self.heap_array[i] = self.heap_array[j]
+            self.heap_array[j] = temp
+         
+    # Methods 
+
     def size(self) -> int:
         return self.element_counter
     
@@ -21,18 +40,20 @@ class MinHeap:
 
 # Tests:
 
-print("1) Create new heap")
 heap = MinHeap(10)
-print(f"created heap w max size 10")
 
-print("\n2) Check initial state")
-print(f"size: {heap.size()}")
-print(f"is empty: {heap.is_empty()}")
-print(f"display: {heap.display()}")
+print(f"\nLeft child of 0: {heap.left_child(0)}") # 1
+print(f"\nRight child of 0: {heap.right_child(0)}") # 2
+print(f"\nParent of 3: {heap.parent(3)}") # 1
 
-print("\n3) Another Heap")
-heap = MinHeap(5)
-print(f"heap w max size 5")
+heap.heap_array[0] = "A"
+heap.heap_array[1] = "B"
+heap.element_counter = 2
+
+print(f"\nBefore: {heap.display()}")
+heap.swap(0, 1)
+print(f"\nAfter: {heap.display()}")
+
 
         
         
